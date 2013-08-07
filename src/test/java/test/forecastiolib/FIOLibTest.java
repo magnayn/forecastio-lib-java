@@ -6,13 +6,21 @@ import dme.forecastiolib.FIOFlags;
 import dme.forecastiolib.FIOHourly;
 import dme.forecastiolib.FIOMinutely;
 import dme.forecastiolib.ForecastIO;
+import org.testng.annotations.Test;
 
+@Test
 public class FIOLibTest {
 	
-	private static final String apikey = "YOUR_API_KEY";
-	  	   
-	public static void main(String[] args) {
-	
+	private static final String apikey = System.getProperty("forecast.io.api.key");
+
+    @Test
+	public void testGetData() {
+
+        if( apikey == null ) {
+            throw new RuntimeException("Must set system property forecast.io.api.key to run tests");
+        }
+
+
 		//Some coordinates for testing
 		//Lisbon:   38.7252993 , -9.1500364
 		//Madrid:   40.41678 , -3.70379
